@@ -15,7 +15,6 @@ export class CacheConfigService implements CacheOptionsFactory {
     return {
       store: redisStore,
       ttl: 86_400_000, //* 24 h
-      max: 10,
       host,
       password,
     };

@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CqrsModule } from '@nestjs/cqrs';
 import { AppController } from './app.controller';
 import { CacheConfigService } from './configs/cache.config';
+import { SearchQueryHandler } from './search/search.handler';
 
 @Module({
   imports: [
@@ -18,5 +19,6 @@ import { CacheConfigService } from './configs/cache.config';
     }),
   ],
   controllers: [AppController],
+  providers: [SearchQueryHandler],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
-import { CacheInterceptor } from '@nestjs/cache-manager';
 import { Controller, Get, Query, UseInterceptors } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
+import { RepeatedRequestInterceptor } from './interceptors/repeated-request.interceptor';
 import { SearchDto } from './search/search.dto';
 import { SearchQueryHandler } from './search/search.handler';
 import { SearchQuery } from './search/search.query';
@@ -11,7 +11,7 @@ export class AppController {
   constructor(private readonly queryBus: QueryBus) {}
 
   @Get('search')
-  @UseInterceptors(CacheInterceptor)
+  @UseInterceptors(RepeatedRequestInterceptor)
   async search(@Query() query: SearchDto.Query): Promise<SearchDto.Response> {
     type Request = RequestHandler<SearchQueryHandler>;
     type Response = ResponseHandler<SearchQueryHandler>;
